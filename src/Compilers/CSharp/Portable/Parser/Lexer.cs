@@ -549,9 +549,26 @@ namespace Microsoft.CodeAnalysis.CSharp.Syntax.InternalSyntax
 
                 case '?':
                     TextWindow.AdvanceChar();
-                    info.Kind = TextWindow.TryAdvance('?')
-                        ? TextWindow.TryAdvance('=') ? SyntaxKind.QuestionQuestionEqualsToken : SyntaxKind.QuestionQuestionToken
-                        : SyntaxKind.QuestionToken;
+                    //eixsting ?? or ??= check
+                    if (TextWindow.TryAdvance('?'))
+                    {
+                        info.Kind = TextWindow.TryAdvance('=')
+                            ? SyntaxKind.QuestionQuestionEqualsToken
+                            : SyntaxKind.QuestionQuestionToken;
+                    }
+                    //new check for ?=>
+                    else if (TextWindow.PeekChar() == '=' &&
+                             TextWindow.PeekChar(1) == '>')
+                    {
+                        TextWindow.AdvanceChar(2);
+                        info.Kind = SyntaxKind.QuestionEqualsGreaterThanToken;
+                    }
+                    //standard ? check
+                    else
+                    {
+                        info.Kind = SyntaxKind.QuestionToken;
+                    }
+
                     break;
 
                 case '+':

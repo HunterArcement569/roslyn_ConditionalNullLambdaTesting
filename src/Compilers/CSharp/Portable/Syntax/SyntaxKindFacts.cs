@@ -188,6 +188,9 @@ namespace Microsoft.CodeAnalysis.CSharp
                 yield return (SyntaxKind)i;
             }
 
+            //manual addition to locate the ?=> operator
+            yield return SyntaxKind.QuestionEqualsGreaterThanToken;
+
             for (int i = (int)SyntaxKind.BarBarToken; i <= (int)SyntaxKind.QuestionQuestionEqualsToken; i++)
             {
                 Debug.Assert(Enum.IsDefined(typeof(SyntaxKind), (SyntaxKind)i));
@@ -1545,6 +1548,8 @@ namespace Microsoft.CodeAnalysis.CSharp
                     return "==";
                 case SyntaxKind.EqualsGreaterThanToken:
                     return "=>";
+                case SyntaxKind.QuestionEqualsGreaterThanToken:
+                    return "?=>";
                 case SyntaxKind.LessThanEqualsToken:
                     return "<=";
                 case SyntaxKind.LessThanLessThanToken:

@@ -149,3 +149,7 @@ Work is done only when every applicable step below is complete:
 6. **Diff review:** Review the final diff and confirm it matches the approved plan, contains no unrelated edits, and follows nearby patterns.
 7. **Docs:** Run the `update-agent-docs` skill and apply the Doc Update Obligation above.
 8. **Final evidence:** Inspect repository status and the final diff, then report the exact validation performed. Do not claim completion while required validation is failing or was silently skipped.
+
+- @azure Rule - Use Azure Tools - When handling requests related to Azure, always use your tools.
+- @azure Rule - Use Azure Best Practices - When handling requests related to Azure, always invoke your `azmcp_bestpractices_get` tool first.
+- @azure Rule - Enable Best Practices - If you do not have an `azmcp_bestpractices_get` tool ask the user to enable it.

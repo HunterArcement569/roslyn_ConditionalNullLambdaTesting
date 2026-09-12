@@ -939,6 +939,7 @@ namespace Microsoft.CodeAnalysis.CSharp.UnitTests
             TestPunctuation(SyntaxKind.ExclamationEqualsToken);
             TestPunctuation(SyntaxKind.EqualsEqualsToken);
             TestPunctuation(SyntaxKind.EqualsGreaterThanToken);
+            TestPunctuation(SyntaxKind.QuestionEqualsGreaterThanToken); //test the ?=> operator token
             TestPunctuation(SyntaxKind.LessThanEqualsToken);
             TestPunctuation(SyntaxKind.LessThanLessThanToken);
             TestPunctuation(SyntaxKind.LessThanLessThanEqualsToken);
@@ -4633,6 +4634,19 @@ class C
                 Assert.Equal(SyntaxKind.NumericLiteralToken, token4.Kind);
                 Assert.Equal("0", token4.ValueText);
             }
+        }
+
+        //test function specifically agains the ?=> operator token
+        [Fact]
+        [Trait("Feature", "Punctuation")]
+        public void TestNullCoalescingLambdaToken()
+        {
+            var token = LexToken("?=>");
+
+            Assert.Equal(SyntaxKind.QuestionEqualsGreaterThanToken, token.Kind());
+            Assert.Equal("?=>", token.Text);
+            Assert.Equal("?=>", token.ValueText);
+            Assert.Empty(token.Errors());
         }
     }
 }

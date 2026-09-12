@@ -125,6 +125,8 @@ namespace Microsoft.CodeAnalysis.CSharp
         EqualsEqualsToken = 8268,
         /// <summary>Represents <c>=&gt;</c> token.</summary>
         EqualsGreaterThanToken = 8269,
+        /// <summary>Represents <c>?=&gt;</c> token.</summary>
+        QuestionEqualsGreaterThanToken = 8240,
         /// <summary>Represents <c>&lt;=</c> token.</summary>
         LessThanEqualsToken = 8270,
         /// <summary>Represents <c>&lt;&lt;</c> token.</summary>
